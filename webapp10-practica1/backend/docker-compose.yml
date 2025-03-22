@@ -6,7 +6,7 @@ services:
     #  context: .
     #  dockerfile: Dockerfile
     ports:
-      - 8443:8443
+      - 443:8443
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/pruebafinal?serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=root
