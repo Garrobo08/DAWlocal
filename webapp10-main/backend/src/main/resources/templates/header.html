@@ -1,0 +1,49 @@
+<header class="header">
+    <div class="logo">
+        <a href="/">
+            <img src="/images/whiteHorizontalLogo.png" alt="TICKETZONE FEST Logo">
+        </a>
+    </div>
+
+    <h1 id="title">TICKETZONE FEST</h1>
+
+    <div class="navButtons d-flex justify-content-between align-items-center"></div>
+        {{#logged}}
+        <form action="/logout" method="post" class="d-inline">
+        <button class="btn btn-dark btn-nowrap" type="submit">Log Out</button>
+        <input type="hidden" name="_csrf" value="{{token}}" />
+        </form>
+            {{#admin}}
+                <button  onclick="window.location.href='/newconcert'" type="button" class="btn btn-dark">New Concert</button>
+                <button onclick="window.location.href='/newartist'" type="button" class="btn btn-dark">New Artist</button>
+            {{/admin}} 
+            <div class="navButtons">  
+
+                {{#user.image}}
+                <div class="profile-container text-center">
+                    <a href="/user/{{id}}">
+                        <img src="/user/{{user.id}}/photo" class="profilephoto" alt="{{user.userName}}">
+                    </a>
+                    <div class="username">{{userName}}</div>
+                </div>
+                {{/user.image}}
+                
+                {{^user.image}}
+                    <div class="profile-container text-center">
+                        <a href="/user/{{id}}">
+                            <img src="/images/noprofilephoto.png" class="profilephoto" alt="No Image Available">
+                        </a>
+                        <div class="username">{{userName}}</div>
+                    </div>
+                {{/user.image}}
+            </div>             
+        {{/logged}}
+    </div>
+
+    {{^logged}}
+    <div class="navButtons">
+        <button onclick="window.location.href='/register'" type="button" class="btn btn-dark">Register</button>
+        <button onclick="window.location.href='/login'" type="button" class="btn btn-dark">Login</button>
+    </div>
+    {{/logged}}
+</header>
